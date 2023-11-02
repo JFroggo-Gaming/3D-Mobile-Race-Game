@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CarController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CarController : MonoBehaviour
     private float originalSpeed; // Początkowa prędkość samochodu
     private float currentSpeed; // Aktualna prędkość samochodu
     private bool speedingUp; // Czy samochód przyspiesza
+    private bool hasFallen = false; // Zmienna flagowa informująca, czy spadnięcie już miało miejsce
 
     // Zdarzenie, które zostanie wywołane, gdy samochód wejdzie w obszar obiektu z tagiem "Star"
     public delegate void StarCollected();
@@ -23,16 +25,19 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.gameStarted)
+        if (GameManager.instance.gameStarted )
         {
             Move();
             CheckInput();
         }
 
         // checking if the car is outside the platform - so game over can be triggered
-        if (transform.position.y <= -2)
+        if (!hasFallen && transform.position.y <= -2)
         {
-            GameManager.instance.GameOver();
+
+        hasFallen = true; // Ustaw zmienną hasFallen na true, aby oznaczyć, że spadnięcie już nastąpiło
+        GameManager.instance.GameOver();
+
         }
 
         if (speedingUp)
@@ -54,18 +59,29 @@ public class CarController : MonoBehaviour
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
     }
 
+    private bool IsPointerOverUIObject() // when clicking on an option does not change car direction
+{
+    PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+    eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+    List<RaycastResult> results = new List<RaycastResult>();
+    EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+    return results.Count > 0;
+}
+
+
     void CheckInput()
+{   
+    if (OptionsMenu.isOptionsPanelActive) return; // if OptionPanel is active, you can not change car direction when clicking
+    if (firstInput)
     {
-        if (firstInput)
-        {
-            firstInput = false;
-            return;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            ChangeDirection();
-        }
+        firstInput = false;
+        return;
     }
+    if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+    {
+        ChangeDirection();
+    }
+}
 
     void ChangeDirection()
     {
@@ -97,6 +113,9 @@ public class CarController : MonoBehaviour
 
             // Usuń obiekt "Star"
             Destroy(other.gameObject);
+
+            AudioManager.instance.PlayCoinSound();
+            
 
             // Opcjonalnie: Wywołaj zdarzenie OnStarCollected
             if (OnStarCollected != null)

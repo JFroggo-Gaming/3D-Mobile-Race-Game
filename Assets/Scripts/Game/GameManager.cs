@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,18 +53,26 @@ public class GameManager : MonoBehaviour
         score = 0;
         UpdateScoreText();
         StartCoroutine(IncreaseScoreOverTime());
+        AudioManager.instance.PlayCarSound();
     }
     
     public void GameOver()
-    {
-        gameStarted = false;
-        VehicleManager.instance.PlatformSpawner.SetActive(false);
-        ScorePanel.SetActive(true);
-        StartPlatforms.SetActive(false);
-        StopAllCoroutines(); // Przerwij wszystkie korutyny
-        // Ustaw prędkość samochodu na 0, aby go zatrzymać
-        VehicleManager.instance.currentVehicle.GetComponent<CarController>().MoveSpeed = 0;
-    }
+{
+    gameStarted = false;
+    VehicleManager.instance.PlatformSpawner.SetActive(false);
+    ScorePanel.SetActive(true);
+    StartPlatforms.SetActive(false);
+    StopAllCoroutines(); // Przerwij wszystkie korutyny
+
+    // Zatrzymaj dźwięk samochodu
+    AudioManager.instance.StopCarSound();
+    // Odtwórz dźwięk Game Over
+    AudioManager.instance.PlayGameOverSound();
+    Debug.Log("GAMEOVER");
+    return;
+    
+}
+
 
 
     public void ReloadLevel()

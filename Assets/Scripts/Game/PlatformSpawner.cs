@@ -109,7 +109,7 @@ public class PlatformSpawner : MonoBehaviour
 
         if (random == 0)
         {
-            newPosition.x += 1.6f;
+            newPosition.z += 1.6f;
         }
         else
         {

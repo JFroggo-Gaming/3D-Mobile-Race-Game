@@ -9,6 +9,7 @@ public class Platform : MonoBehaviour
     private PlatformSpawner platformSpawner; // Referencja do skryptu PlatformSpawner.
 
     public float vanishDelay = 3.0f; // Czas opóźnienia przed zniknięciem platformy po przekroczeniu przez gracza.
+    
 
     void Start()
     {
@@ -27,12 +28,14 @@ public class Platform : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
+{
+    if (other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(VanishAfterDelay());
-        }
+        StartCoroutine(VanishAfterDelay());
+        // Odtwórz dźwięk monet
     }
+}
+
 
     private IEnumerator VanishAfterDelay()
     {
