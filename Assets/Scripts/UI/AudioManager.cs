@@ -5,17 +5,22 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public AudioMixer EffectAudioMixer; // Referencja do Audio Mixer
+    public AudioMixer EffectAudioMixer;
     public AudioMixer MusicAudioMixer;
 
-    public AudioSource carSoundSource; // Źródło dźwięku samochodu
-    public AudioSource coinSoundSource; // Źródło dźwięków gry
+    public AudioSource carSoundSource;
+    public AudioSource coinSoundSource;
     public AudioSource musicSource;
 
-    public AudioClip carSoundClip; // Dźwięk samochodu
-    public AudioClip coinSoundClip; // Dźwięk monet
+    public AudioClip carSoundClip;
+    public AudioClip coinSoundClip;
     public AudioClip musicClip;
-    public AudioClip gameOverSoundClip; // Dźwięk Game Over
+    public AudioClip gameOverSoundClip;
+
+    private float effectsVolume = 1.0f; // Domyślna głośność efektów
+    private float musicVolume = 1.0f; // Domyślna głośność muzyki
+
+    private bool isMuted = false;
 
     void Awake()
     {
@@ -23,6 +28,21 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
         }
+
+        // Pobranie zapisanej głośności z PlayerPrefs
+        if (PlayerPrefs.HasKey("EffectsVolume"))
+        {
+            effectsVolume = PlayerPrefs.GetFloat("EffectsVolume");
+        }
+
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
+            musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+        }
+
+        // Zastosowanie głośności
+        SetEffectsVolume(effectsVolume);
+        SetMusicVolume(musicVolume);
     }
 
 
@@ -30,11 +50,11 @@ public class AudioManager : MonoBehaviour
     {
         carSoundSource.clip = carSoundClip;
         carSoundSource.Play();
-        Debug.Log("Car Sound");
     }
 
     public void StopCarSound()
     {
+        carSoundSource.clip = carSoundClip;
         carSoundSource.Stop();
     }
 
@@ -50,35 +70,57 @@ public class AudioManager : MonoBehaviour
         coinSoundSource.Play();
     }
 
-     public bool ToggleMute()
-    {   
-        bool isMuted = !carSoundSource.mute && !coinSoundSource.mute; // Invert the current mute state.
-        coinSoundSource.mute = isMuted;
-        carSoundSource.mute = isMuted;
+    public bool ToggleMute()
+    {
+        isMuted = !isMuted;
+
+        // Zmiana głośności efektów i muzyki w zależności od flagi wyciszenia
+        if (isMuted)
+        {
+            SetEffectsVolume(0f);
+            SetMusicVolume(0f);
+        }
+        else
+        {
+            SetEffectsVolume(effectsVolume);
+            SetMusicVolume(musicVolume);
+        }
+
         return isMuted;
     }
 
     public float GetEffectsVolume()
     {
-        float valueEffects;
-        EffectAudioMixer.GetFloat("MasterVolume", out valueEffects);
-        return valueEffects;
+        return effectsVolume;
     }
 
     public float GetMusicVolume()
     {
-        float valueMusic;
-        MusicAudioMixer.GetFloat("MusicVolume", out valueMusic);
-        return valueMusic;
+        return musicVolume;
     }
 
     public void SetEffectsVolume(float volumeEffects)
     {
-        EffectAudioMixer.SetFloat("MasterVolume", Mathf.Log10(volumeEffects) * 20);
+        effectsVolume = volumeEffects;
+        if (!isMuted)
+        {
+            EffectAudioMixer.SetFloat("EffectsVolume", Mathf.Log10(volumeEffects) * 20); // Poprawiono klucz AudioMixer'a
+        }
     }
 
     public void SetMusicVolume(float volumeMusic)
     {
-        MusicAudioMixer.SetFloat("MusicVolume", Mathf.Log10(volumeMusic) * 20);
+        musicVolume = volumeMusic;
+        if (!isMuted)
+        {
+            MusicAudioMixer.SetFloat("MusicVolume", Mathf.Log10(volumeMusic) * 20);
+        }
+    }
+
+    public void SaveAudioSettings()
+    {
+        PlayerPrefs.SetFloat("EffectsVolume", effectsVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.Save();
     }
 }
