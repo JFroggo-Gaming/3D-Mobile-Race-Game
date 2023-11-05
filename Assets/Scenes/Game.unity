@@ -464,8 +464,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
+  m_sharedMaterial: {fileID: 3342297820692784743, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &103798750
@@ -873,8 +873,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
+  m_sharedMaterial: {fileID: 3342297820692784743, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &207398261
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 211467967}
   - component: {fileID: 211467968}
   m_Layer: 5
-  m_Name: SliderMusic
+  m_Name: SliderEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1328213262}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SetEffectVolume
         m_Mode: 1
@@ -1693,6 +1693,7 @@ MonoBehaviour:
   - {fileID: 7669929089899197249, guid: d73c567cd00ac4cc4b48ade09cf53f01, type: 3}
   rarePlatforms:
   - {fileID: 7669929089899197249, guid: 5cec1dcbef3ea4a40a4223feaf9daf11, type: 3}
+  - {fileID: 7669929089899197249, guid: ba977034fe0744ed2aa8f13c0757fd04, type: 3}
   lastPlatform: {fileID: 1975593371}
   score: 0
 --- !u!4 &391383647
@@ -2078,8 +2079,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
+  m_sharedMaterial: {fileID: 3342297820692784743, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2142,7 +2143,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &493385076
@@ -3255,8 +3256,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
+  m_sharedMaterial: {fileID: 3342297820692784743, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3319,7 +3320,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &747626366
@@ -3445,7 +3446,7 @@ GameObject:
   - component: {fileID: 874446894}
   - component: {fileID: 874446895}
   m_Layer: 5
-  m_Name: SliderEffects
+  m_Name: SliderMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3524,7 +3525,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1328213262}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -4621,9 +4622,9 @@ MonoBehaviour:
   scoreListPanel: {fileID: 2099253237}
   Score1: {fileID: 493385075}
   Score2: {fileID: 103798749}
-  Score3: {fileID: 1409914400}
-  Score4: {fileID: 281812573}
-  Score5: {fileID: 2088378771}
+  Score3: {fileID: 2035435021}
+  Score4: {fileID: 747626365}
+  Score5: {fileID: 207398260}
   lowQualityToggle: {fileID: 1779715903}
   mediumQualityToggle: {fileID: 1924028340}
   highQualityToggle: {fileID: 810407400}
@@ -4631,8 +4632,8 @@ MonoBehaviour:
   CloseOptions: {fileID: 68952582}
   MuteButton: {fileID: 1055238323}
   UnmuteButton: {fileID: 957149058}
-  effectsVolumeSlider: {fileID: 874446895}
-  musicVolumeSlider: {fileID: 211467968}
+  effectsVolumeSlider: {fileID: 211467968}
+  musicVolumeSlider: {fileID: 874446895}
 --- !u!4 &1328213263
 Transform:
   m_ObjectHideFlags: 0
@@ -8556,8 +8557,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
+  m_sharedMaterial: {fileID: 3342297820692784743, guid: 39cba144285c640bebe498abfde3fd22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8620,7 +8621,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2035435022

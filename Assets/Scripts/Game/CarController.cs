@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -71,6 +70,7 @@ public class CarController : MonoBehaviour
 
     void CheckInput()
 {   
+   
     if (OptionsMenu.isOptionsPanelActive) return; // if OptionPanel is active, you can not change car direction when clicking
     if (firstInput)
     {
@@ -80,6 +80,7 @@ public class CarController : MonoBehaviour
     if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
     {
         ChangeDirection();
+        
     }
 }
 

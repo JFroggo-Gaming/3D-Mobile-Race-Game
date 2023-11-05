@@ -69,7 +69,7 @@ public class PlatformSpawner : MonoBehaviour
         bool spawnedRarePlatform = false;
         int randomRare = Random.Range(0, 100);
         
-        if (randomRare < 2)
+        if (randomRare < 5)
         {
             int randomRareIndex = Random.Range(0, rarePlatforms.Count);
             Instantiate(rarePlatforms[randomRareIndex], newPosition, Quaternion.identity);

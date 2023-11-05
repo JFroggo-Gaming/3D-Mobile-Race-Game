@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuboid
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d5201c54bfe2c0242acafec0421e0d8e, type: 3}
+      propertyPath: m_TagString
+      value: Star
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5201c54bfe2c0242acafec0421e0d8e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -390,11 +394,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6329898, y: 1.6329895, z: 2.7760828}
+  m_Size: {x: 1.94, y: 1.69, z: 4.53}
   m_Center: {x: 0, y: 0.0000000037252903, z: -0.000000059604638}
 --- !u!114 &4188596847091384758
 MonoBehaviour:

@@ -89,6 +89,9 @@ public class OptionsMenu : MonoBehaviour
                 optionsPanel.SetActive(false);
                 CloseOptions.SetActive(false);
                 OpenOptions.SetActive(true);
+                ResumeGame();
+                isOptionsPanelActive = false;
+                GameManager.instance.ResumeScoreIncrease();
             }
         }
         else
@@ -109,6 +112,7 @@ public class OptionsMenu : MonoBehaviour
     public void ToggleScoreListFunction()
     {
         ToggleScoreList();
+        
     }
 
     public void ToggleOptions()
@@ -234,6 +238,7 @@ public class OptionsMenu : MonoBehaviour
             AudioManager.instance.PlayCarStartSound();
         }
         Time.timeScale = 1;
+        Debug.Log("RESUME");
     }
 
     void OnOptionsMenuOpened()
