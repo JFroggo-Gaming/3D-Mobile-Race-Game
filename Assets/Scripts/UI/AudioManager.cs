@@ -8,11 +8,13 @@ public class AudioManager : MonoBehaviour
     public AudioMixer EffectAudioMixer;
     public AudioMixer MusicAudioMixer;
 
-    public AudioSource carSoundSource;
+    public AudioSource carStartSource;
+    public AudioSource carDrivingSource;
     public AudioSource coinSoundSource;
     public AudioSource musicSource;
 
-    public AudioClip carSoundClip;
+    public AudioClip carStartClip;
+    public AudioClip carDrivingClip;
     public AudioClip coinSoundClip;
     public AudioClip musicClip;
     public AudioClip gameOverSoundClip;
@@ -46,16 +48,28 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlayCarSound()
+    public void PlayCarStartSound()
     {
-        carSoundSource.clip = carSoundClip;
-        carSoundSource.Play();
+        carStartSource.clip = carStartClip;
+        carStartSource.Play();
     }
 
-    public void StopCarSound()
+    public void PlayCarDrivingSound()
     {
-        carSoundSource.clip = carSoundClip;
-        carSoundSource.Stop();
+        carDrivingSource.clip = carDrivingClip;
+        carDrivingSource.Play();
+    }
+
+    public void StopCarDrivingSound()
+    {
+        carDrivingSource.clip = carDrivingClip;
+        carDrivingSource.Stop();
+    }
+
+    public void StopCarStartSound()
+    {
+        carStartSource.clip = carStartClip;
+        carStartSource.Stop();
     }
 
     public void PlayGameOverSound()
@@ -71,23 +85,26 @@ public class AudioManager : MonoBehaviour
     }
 
     public bool ToggleMute()
+{
+    isMuted = !isMuted; // Odwracamy bieżący stan wyciszenia
+
+    if (isMuted)
     {
-        isMuted = !isMuted;
-
-        // Zmiana głośności efektów i muzyki w zależności od flagi wyciszenia
-        if (isMuted)
-        {
-            SetEffectsVolume(0f);
-            SetMusicVolume(0f);
-        }
-        else
-        {
-            SetEffectsVolume(effectsVolume);
-            SetMusicVolume(musicVolume);
-        }
-
-        return isMuted;
+        // Jeśli jest wyciszone, zatrzymujemy wszystkie źródła dźwięku i ustawiamy głośność na minimalną
+        EffectAudioMixer.SetFloat("EffectsVolume", -80f); // Minimalna głośność
+        MusicAudioMixer.SetFloat("MusicVolume", -80f); // Minimalna głośność
     }
+    else
+    {   
+        
+        // Jeśli nie jest wyciszone, przywracamy zapisane głośności
+        SetEffectsVolume(effectsVolume);
+        SetMusicVolume(musicVolume);
+    }
+
+    return isMuted; // Zwracamy bieżący stan wyciszenia
+}
+
 
     public float GetEffectsVolume()
     {
