@@ -17,19 +17,12 @@ public class OptionsMenu : MonoBehaviour
     public GameObject UnmuteButton;
     public static bool isOptionsPanelActive = false;
 
-    public Slider effectsVolumeSlider; // Skorygowano przypisanie sliderów z poziomu inspektora
-    public Slider musicVolumeSlider; 
-
-    void Awake()
-    {
-        // Przypisz slidery w inspektorze lub programowo, jeśli to konieczne.
-        effectsVolumeSlider = FindObjectOfType<Slider>(); 
-        musicVolumeSlider = FindObjectOfType<Slider>();
-    }
+    public Slider effectsVolumeSlider; // Slider dla efektów
+    public Slider musicVolumeSlider;   // Slider dla muzyki
 
     void Start()
     {
-        // Pobierz zapisane ustawienia sliderów z PlayerPrefs i zastosuj je
+        // Przypisanie wartości z PlayerPrefs do odpowiednich sliderów
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
             float effectsVolume = PlayerPrefs.GetFloat("EffectsVolume");
@@ -44,7 +37,6 @@ public class OptionsMenu : MonoBehaviour
             musicVolumeSlider.value = musicVolume;
         }
     }
-
 
     public void ToggleOptions()
     {
@@ -93,20 +85,19 @@ public class OptionsMenu : MonoBehaviour
         isOptionsPanelActive = false;
     }
 
-    public void SetEffectVolume() // Skorygowano nazwę funkcji od ustawiania głośności efektów
+    public void SetEffectVolume()
     {
-        float volume = effectsVolumeSlider.value; // Poprawiono odczyt wartości z odpowiedniego slidera
-        AudioManager.instance.SetEffectsVolume(volume); // Ustawiono głośność efektów
-        AudioManager.instance.SaveAudioSettings(); // Zapisano ustawienia
+        float volume = effectsVolumeSlider.value;
+        AudioManager.instance.SetEffectsVolume(volume);
+        AudioManager.instance.SaveAudioSettings();
     }
 
-    public void SetMusicVolume() // Skorygowano nazwę funkcji od ustawiania głośności muzyki
+    public void SetMusicVolume()
     {
-        float volume = musicVolumeSlider.value; // Poprawiono odczyt wartości z odpowiedniego slidera
-        AudioManager.instance.SetMusicVolume(volume); // Ustawiono głośność muzyki
-        AudioManager.instance.SaveAudioSettings(); // Zapisano ustawienia
+        float volume = musicVolumeSlider.value;
+        AudioManager.instance.SetMusicVolume(volume);
+        AudioManager.instance.SaveAudioSettings();
     }
-
 
     public void SetGraphicsQuality()
     {
